@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="io.choerodon.choerodonstudyservice.infra.mapper.UserMapper">
+<!--    <resultMap id="userWithRoles" type="io.choerodon.iam.infra.dto.UserDTO" autoMapping="true">-->
+<!--        <id property="id" column="id"/>-->
+<!--        <result property="loginName" column="login_name"/>-->
+<!--        <result property="email" column="email"/>-->
+<!--        <result property="realName" column="real_name"/>-->
+<!--        <result property="enabled" column="is_enabled"/>-->
+<!--        <result property="admin" column="is_admin"/>-->
+<!--        <result property="password" column="hash_password"/>-->
+<!--        <collection property="roles" ofType="io.choerodon.iam.infra.dto.RoleDTO" autoMapping="true">-->
+<!--            <id property="id" column="role_id"/>-->
+<!--            <result property="name" column="name"/>-->
+<!--            <result property="code" column="code"/>-->
+<!--            <result property="enabled" column="role_is_enabled"/>-->
+<!--            <result property="builtIn" column="role_is_built_in"/>-->
+<!--        </collection>-->
+<!--    </resultMap>-->
+
+<!--    <resultMap id="UserRoleDTO" type="io.choerodon.iam.api.dto.UserRoleDTO" autoMapping="true">-->
+<!--        <id property="id" column="id"></id>-->
+<!--        <result property="imageUrl" column="image_url"/>-->
+<!--        <result property="name" column="name"/>-->
+<!--        <result property="code" column="code"/>-->
+<!--        <result property="level" column="source_type"/>-->
+<!--        <result property="enabled" column="is_enabled"/>-->
+<!--        <result property="roleNames" column="roles"/>-->
+<!--        <result property="projName" column="proj_name"/>-->
+<!--        <result property="password" column="hash_password"/>-->
+<!--    </resultMap>-->
+
+    <resultMap id="userDTO" type="io.choerodon.choerodonstudyservice.infra.dto.UserDTO" >
+        <id property="id" column="id"/>
+        <result property="enabled" column="is_enabled"/>
+        <result property="locked" column="is_locked"/>
+        <result property="ldap" column="is_ldap"/>
+        <result property="admin" column="is_admin"/>
+        <result property="password" column="hash_password"/>
+    </resultMap>
+
+<!--    <resultMap id="simplifiedUserDTO" type="io.choerodon.iam.api.dto.SimplifiedUserDTO" autoMapping="true">-->
+<!--        <id property="id" column="id"/>-->
+<!--        <result property="loginName" column="login_name"/>-->
+<!--        <result property="realName" column="real_name"/>-->
+<!--        <result property="imageUrl" column="image_url"/>-->
+<!--    </resultMap>-->
+
+    <select id="getUserById" resultMap="userDTO">
+        SELECT * FROM iam_user
+        WHERE id = #{userId}
+        limit 1
+    </select>
+
+
+
+
+
+</mapper>
